@@ -2494,10 +2494,8 @@ Game.Launch=function()
 		
 		Game.GrabData=function()
 		{
-			if (!App) ajax('/grab.php',Game.GrabDataResponse);
-			else App.grabData(function(res){
-				Game.heralds=100;
-			});
+			Game.GrabDataResponse);
+			Game.heralds=100;
 		}
 		Game.GrabDataResponse=function(response)
 		{
