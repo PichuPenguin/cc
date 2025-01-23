@@ -2494,7 +2494,7 @@ Game.Launch=function()
 		
 		Game.GrabData=function()
 		{
-			if (!App) ajax('/patreon/grab.php',Game.GrabDataResponse);
+			if (!App) ajax('/grab.php',Game.GrabDataResponse);
 			else App.grabData(function(res){
 				Game.heralds=100;
 			});
