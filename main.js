@@ -1,4 +1,4 @@
-﻿/*
+/*
 All this code is copyright Orteil, 2013-2023.
 	-with some help, advice and fixes by Nicholas Laux, Debugbro, Opti, the folks at Playsaurus, and lots of people on reddit, Discord, and the DashNet forums
 	-also includes a bunch of snippets found on stackoverflow.com and others
@@ -2490,12 +2490,16 @@ Game.Launch=function()
 		
 		Game.grandmaNames=['Granny','Gusher','Ethel','Edna','Doris','Maud','Hilda','Gladys','Michelle','Michele','Phyllis','Millicent','Muriel','Myrtle','Mildred','Mavis','Helen','Gloria','Sheila','Betty','Gertrude','Agatha','Beryl','Agnes','Pearl','Precious','Ruby','Vera','Bonnie','Ada','Bunny','Cookie','Darling','Gaga','GamGam','Memaw','Mimsy','Peanut','Nana','Nan','Tootsie','Warty','Stinky','Heinous'];
 		Game.customGrandmaNames=[];
-		Game.heralds=100;
+		Game.heralds=0;
 		
 		Game.GrabData=function()
 		{
-			Game.GrabDataResponse);
-			Game.heralds=100;
+			if (!App) ajax('https://pichupenguin.github.io/patreon/grab.php',Game.GrabDataResponse);
+			else App.grabData(function(res){
+				Game.heralds=res?(res.playersN||1):1;
+				Game.heralds=Math.max(0,Math.min(100,Math.ceil(Game.heralds/100*100)/100));
+				l('heraldsAmount').textContent=Math.floor(Game.heralds);
+			});
 		}
 		Game.GrabDataResponse=function(response)
 		{
